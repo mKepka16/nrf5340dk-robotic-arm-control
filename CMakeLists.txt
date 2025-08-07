@@ -3,4 +3,4 @@ find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
 
 project(robotic-arm-control)
 
-target_sources(app PRIVATE src/main.c src/led.c)
+target_sources(app PRIVATE src/main.c src/led.c src/advert.c src/connection.c src/racs.c src/servo.c)

@@ -18,13 +18,13 @@ K_THREAD_STACK_DEFINE(advert_led_stack, ADVERT_LED_THREAD_STACK_SIZE);
 static struct k_thread advert_led_thread;
 static k_tid_t advert_led_tid;
 
-void init_leds()
+void init_leds(void)
 {
   dk_leds_init();
   LOG_INF("LEDs initialized\n");
 }
 
-static void blink_advert_led()
+static void blink_advert_led(void)
 {
   LOG_INF("Advert LED blinking started\n");
   while (1)
@@ -43,7 +43,7 @@ static void blink_advert_led()
   LOG_INF("Advert LED blinking stopped\n");
 }
 
-void start_advert_led_blinking()
+void start_advert_led_blinking(void)
 {
   if (is_adverting) {
     LOG_WRN("Couldn't start advert LED blinking - blinking already started\n");
@@ -53,22 +53,22 @@ void start_advert_led_blinking()
   advert_led_tid = k_thread_create(
       &advert_led_thread, advert_led_stack,
       K_THREAD_STACK_SIZEOF(advert_led_stack),
-      blink_advert_led,
+      (k_thread_entry_t)blink_advert_led,
       NULL, NULL, NULL,
       ADVERT_LED_THREAD_PRIORITY, 0, K_NO_WAIT);
 }
 
-void stop_advert_led_blinking()
+void stop_advert_led_blinking(void)
 {
   is_adverting = false;
 }
 
-void turn_on_connection_led() {
+void turn_on_connection_led(void) {
   dk_set_led(BT_CONNECTION_LED, true);
   LOG_INF("Connection LED turned on\n");
 }
 
-void turn_off_connection_led() {
+void turn_off_connection_led(void) {
   dk_set_led(BT_CONNECTION_LED, false);
   LOG_INF("Connection LED turned off\n");
 }

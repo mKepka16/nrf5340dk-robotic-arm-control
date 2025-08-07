@@ -1,20 +1,26 @@
 #include <zephyr/kernel.h>
-#include "led.h"
 #include "advert.h"
+#include "connection.h"
+#include <zephyr/bluetooth/bluetooth.h>
+#include "led.h"
+#include <zephyr/logging/log.h>
+#include "servo.h"
 
+LOG_MODULE_REGISTER(Main, LOG_LEVEL_WRN);
 
 int main(void)
 {
   init_leds();
 
-  while(1) {
-    turn_on_connection_led();
-    start_advert_led_blinking();
-    k_msleep(5000);
-    turn_off_connection_led();
-    stop_advert_led_blinking();
-    k_msleep(5000);
-  }
+  init_servos();
+
+  bt_enable(NULL);
+
+  init_advertising();
+
+  init_bt_connection();
+
+  start_advertising();
 
   return 0;
 }

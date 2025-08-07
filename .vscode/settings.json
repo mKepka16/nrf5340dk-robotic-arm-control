@@ -1,5 +1,15 @@
 {
   "nrf-connect.applications": [
     "${workspaceFolder}"
-  ]
+  ],
+  "files.associations": {
+    "*.tmpl": "html",
+    "*.sql": "sql",
+    "gap.h": "c",
+    "bluetooth.h": "c",
+    "connection.h": "c",
+    "uuid.h": "c",
+    "pwm.h": "c",
+    "servo.h": "c"
+  }
 }
