@@ -11,10 +11,15 @@ This project demonstrates how to control a robotic arm using the Nordic nRF5340 
   - 3 × TowerPro MG-995 (Base rotation, shoulder, and elbow)
   - 2 × TowerPro SG90 Micro (Grabber and wrist)
 - **Connections:**
-  - **PWM Pins:** Connect the servo signal wires to the appropriate PWM-capable pins on the nRF5340DK.
+  - **PWM Pins:**
+    - **PWM_OUT0 (P1.03)**
+    - **PWM_OUT1 (P1.02)**
+    - **PWM_OUT2 (P0.27)**
+    - **PWM_OUT0 (P1.15)**
+    - **PWM_OUT1 (P1.14)**
   - **Power Supply:** Ensure the servos are powered by a 5V external power source capable of providing up to 5A.
   - **GND:** Connect the ground of the external power supply to the nRF5340DK GND.
-- **Optional:** LEDs for status indication connected to GPIO pins.
+- **LEDs:** Status LEDs are already present on the nRF5340DK development kit.
 
 ## Features
 - Controls servo motors using PWM signals
@@ -27,7 +32,7 @@ This project demonstrates how to control a robotic arm using the Nordic nRF5340 
 - Device tree overlay for pin configuration (see `nrf5340dk_nrf5340_cpuapp_ns.overlay`)
 
 ## Usage
-1. Connect the servo motors and LEDs to the nRF5340DK as described above.
+1. Connect the servo motors to the nRF5340DK as described above.
 2. Build and flash the firmware.
 3. Use a Bluetooth-enabled device to connect to the robotic arm and send control commands.
 4. Observe the servo movements and LED status updates.
@@ -48,5 +53,5 @@ This project demonstrates how to control a robotic arm using the Nordic nRF5340 
 - The servo control logic can be customized in `servo.c` to suit your specific application.
 
 ## Documentation
-- [nRF5340DK Product Page](https://www.nordicsemi.com/Products/Development-hardware/nRF5340-DK)
-- [Zephyr RTOS Documentation](https://docs.zephyrproject.org/latest/)
+- [TowerPro MG-995 Datasheet](assets/mg995_datasheet.pdf)
+- [TowerPro SG90 Datasheet](assets/sg90_datasheet.pdf)
